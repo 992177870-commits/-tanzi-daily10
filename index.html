@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#26352d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="谈资">
+<link rel="manifest" href="manifest.json">
+<title>谈资｜每日十知</title>
+<style>
+:root{--ink:#26352d;--paper:#f5f1e8;--card:#fffdf8;--muted:#7b8178;--line:#ddd8cc;--accent:#8b6f47}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif}
+.app{max-width:760px;margin:auto;padding:22px 18px 90px}.top{display:flex;justify-content:space-between;align-items:center;margin:4px 0 22px}
+.logo{font-size:25px;font-weight:800;letter-spacing:1px}.date{font-size:12px;color:var(--muted)}
+.hero{background:var(--ink);color:#fff;padding:22px;border-radius:22px;margin-bottom:16px}
+.hero h1{font-size:28px;margin:0 0 8px}.hero p{margin:0;color:#d9ded9;line-height:1.65;font-size:14px}
+.tabs{display:flex;gap:8px;overflow:auto;padding:2px 0 14px}.tab{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 14px;font-size:13px}.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:10px 0;box-shadow:0 4px 14px rgba(38,53,45,.04)}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.tag{color:var(--accent);font-weight:700}
+h2{font-size:19px;margin:10px 0 8px;line-height:1.4}.desc{font-size:14px;line-height:1.75;color:#4e554f}
+.quote{border-left:3px solid var(--accent);padding-left:12px;margin-top:12px;color:#454b46;font-size:13px;line-height:1.65}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,253,248,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px max(18px,calc((100vw - 760px)/2 + 18px));display:flex;justify-content:space-around;font-size:12px;color:var(--muted)}
+.bottom b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><div class="logo">谈资｜每日十知</div><div class="date" id="date"></div></div>
+  <section class="hero">
+    <h1>今天懂 10 件有意思的事</h1>
+    <p>每天一点知识，慢慢变成一个什么都能自然聊两句的人。</p>
+  </section>
+  <div class="tabs">
+    <div class="tab active">今日十知</div><div class="tab">饭局</div><div class="tab">和领导聊</div><div class="tab">旅行</div>
+  </div>
+  <main id="list"></main>
+</div>
+<nav class="bottom"><span><b>今日</b></span><span>分类</span><span>收藏</span><span>我的</span></nav>
+<script>
+const items=[
+["01","航空","为什么飞机起飞后有时会让人感觉“突然下坠”？","起飞初段收起襟翼、推力调整以及爬升姿态变化，会让身体产生短暂的失重错觉。飞机并不是突然掉高度，而是加速度和姿态变化改变了体感。","聊天时可以这样说：飞机的“下坠感”很多时候是加速度变化造成的，不等于真的掉高度。"],
+["02","咖啡","为什么精品咖啡经常强调“酸质”？","咖啡里的酸并不等于坏掉的酸。不同产地、品种和烘焙程度会呈现柑橘、莓果、苹果等不同酸质，是判断风味的重要维度。","饭局指数 ★★★★☆"],
+["03","建筑","为什么哥特式教堂看起来像一直在向上生长？","尖拱、飞扶壁和肋架拱顶把建筑重量更有效地传向地面，使墙体能够开出更大的窗，同时把视觉重点推向天空。","聊天时可以这样说：哥特式建筑其实是在用结构技术制造“向上”的宗教感。"],
+["04","历史","为什么伊斯坦布尔一座城市能讲出罗马、拜占庭和奥斯曼三段故事？","这里曾是君士坦丁堡，也是东罗马帝国核心城市，1453年后成为奥斯曼帝国的重要首都。城市本身就是一部跨文明的历史书。","旅行指数 ★★★★★"],
+["05","茶","日本茶道为什么特别强调“和、敬、清、寂”？","茶道不仅是喝茶，更强调人与人之间的礼敬、空间秩序和当下感。它把一次喝茶变成了对时间和关系的仪式化体验。","聊天时可以这样说：日本茶道真正讲究的不是茶，而是人与人如何相处。"],
+["06","英语","“Cheers”为什么不一定是在敬酒？","在英语口语里，Cheers既可以用于举杯，也常用于道谢、告别，语气类似“谢了”“拜拜”。具体含义要看场景。","实用指数 ★★★★★"],
+["07","雪茄","为什么雪茄不能像香烟一样猛抽？","雪茄的风味来自缓慢燃烧与烟叶本身的香气层次。抽得太快会让燃烧温度升高，苦味和刺激感也更明显。","聊天时可以这样说：雪茄更像品茶，速度本身就是风味的一部分。"],
+["08","文学","古人说“海内”，为什么有时不是指海里面？","古代中国常把天下理解为四海之内，所以“海内”可以泛指天下、全国甚至广义的世界。","饭局指数 ★★★★☆"],
+["09","地理","为什么埃塞俄比亚常被称为咖啡的故乡？","现代咖啡文化普遍把埃塞俄比亚视为阿拉比卡咖啡的重要原生地之一，其野生与半野生咖啡遗传资源极其丰富。","聊天时可以这样说：如果想聊咖啡历史，埃塞俄比亚几乎绕不开。"],
+["10","航空","为什么很多跑道编号是两位数字？","跑道编号通常取磁航向并四舍五入到最接近的十度，再去掉最后一个零。例如大约270°的跑道会标成27。相反方向则相差18。","聊天时可以这样说：跑道27其实就是大约270度的方向。"]
+];
+document.getElementById("date").textContent=new Date().toLocaleDateString("zh-CN",{month:"long",day:"numeric"});
+document.getElementById("list").innerHTML=items.map(x=>`<article class="card"><div class="meta"><span>${x[0]} · <span class="tag">${x[1]}</span></span><span>收藏 ♡</span></div><h2>${x[2]}</h2><div class="desc">${x[3]}</div><div class="quote">${x[4]}</div></article>`).join("");
+</script>
+</body>
+</html>
